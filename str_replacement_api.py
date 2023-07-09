@@ -5,9 +5,7 @@
 ############################################################################
 import glob
 import os
-import re
 from docx import Document
-from remove_str_convert_doc2docx import convert_doc2docx_by_win32com
 
 
 def docx_replace_old_to_new(doc_obj, old_string, new_string):
@@ -44,21 +42,6 @@ def docx_replace_old_to_new(doc_obj, old_string, new_string):
         return False
 
 
-# """
-# \b matches empty string specifically at the start and end of a word.
-# re expects the string \b, however normal string interpretation '\b' is replaced to the ASCII backspace character,
-# so you need to either explicitly escape the backslash ('\\b'), or tell python it is a raw string (r'\b').
-#
-# Normal strings use the backslash character as an escape character for special characters (like newlines):
-# >>> print('this is \n a test')
-# this is
-#  a test
-# The r prefix tells the interpreter not to do this:
-#
-# >>> print(r'this is \n a test')
-# this is \n a test
-# >>>
-# """
 def generate_file_and_str_list(report_p, val_list):
     replaced_p = os.path.join(report_p, '已替换文件')
     print('replaced_p: ', replaced_p)
@@ -86,14 +69,8 @@ def replace_str_for_file_list(docx_list, val_list, replaced_p):
 
         for val in val_list:
             old_str = val.get('org_str')
-            # old_str = re.compile(r'(?i)\b%s\b' % val)
-            # old_str = re.compile(r'\b%s\b' % val, flags=re.I)
-            # old_str = re.compile(r'\b{}\b'.format(val.get('org_str')), flags=re.I)
-            #         # regex2 = re.compile('.*({}).*'.format(what2look4))
-            # print('old_str: ', old_str)
 
             new_str = val.get('replaced_str')
-            # new_str = r'\b{}\b'.format(val.get('replaced_str'))
             rplc_new = docx_replace_old_to_new(doc, old_str, new_str)
             if not rplc_new:
                 return False
