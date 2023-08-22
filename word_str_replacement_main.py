@@ -337,7 +337,7 @@ class ListTreeSheet(tk.Frame):
         label_link.bind("<Button-1>", lambda e: self.open_website("https://www.itgeeker.net"))
         label_link.grid(row=0, column=0, padx=(10, 0), ipadx=10, ipady=10, sticky="w")
 
-        label_ver = ttk.Label(author_frame, text='开源Word文字Ver 1.0.0.0', font=('Microsoft YaHei UI', 10), cursor="heart")
+        label_ver = ttk.Label(author_frame, text='开源Word文字替换工具Ver 1.0.1.0', font=('Microsoft YaHei UI', 10), cursor="heart")
         label_ver.config(font=('Microsoft YaHei UI', 10))
         label_ver.bind("<Button-1>",
                        lambda e: self.open_website("https://www.itgeeker.net/itgeeker-technical-service/itgeeker_convert_doc_to_docx/"))

@@ -8,6 +8,16 @@ import os
 from docx import Document
 
 
+def do_replace_old_str_action(old_str, new_str, prgrp):
+    if old_str in prgrp.text:
+        prgrp.text = prgrp.text.replace(old_str, new_str)
+        inline = prgrp.runs
+        for i in range(len(inline)):
+            if old_str in inline[i].text:
+                text = inline[i].text.replace(old_str, new_str)
+                inline[i].text = text
+
+
 def docx_replace_old_to_new(doc_obj, old_string, new_string):
     try:
         # for paragraph in doc_obj.paragraphs:
@@ -36,6 +46,11 @@ def docx_replace_old_to_new(doc_obj, old_string, new_string):
                         if old_string in paragraph.text:
                             print('paragraph.text: ', paragraph.text)
                             paragraph.text = paragraph.text.replace(old_string, new_string)
+        for section in doc_obj.sections:
+            for ph in section.header.paragraphs:
+                do_replace_old_str_action(old_string, new_string, ph)
+            for pf in section.footer.paragraphs:
+                do_replace_old_str_action(old_string, new_string, pf)
         return True
     except Exception as err:
         print('err@replace old to new: %s' % err)
@@ -69,9 +84,8 @@ def replace_str_for_file_list(docx_list, val_list, replaced_p):
 
         for val in val_list:
             old_str = val.get('org_str')
-
             new_str = val.get('replaced_str')
-            rplc_new = docx_replace_old_to_new(doc, old_str, new_str)
+            rplc_new = docx_replace_old_to_new(doc, str(old_str), str(new_str))
             if not rplc_new:
                 return False
         doc.save(replaced_file)

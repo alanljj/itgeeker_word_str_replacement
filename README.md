@@ -5,6 +5,7 @@
 
     - 可指定目录，软件会处理该目录的所有docx文件。
     - 可进行批量处理。
+    - 可替换Word页眉和页脚的文字。
     - 替换内容不能包含原始内容。
     - 已替换文件带有-replaced字样，保存在子目录《已替换文件》中。
 
@@ -12,9 +13,13 @@
 
 技术奇客是奇客罗方智能科技的关联公司。更多信息可访问 ITGeeker技术奇客官方博客 [www.itgeeker.net](https://www.itgeeker.net) 或者 GeekerCloud奇客罗方智能科技 [https://www.geekercloud.com](https://www.geekercloud.com)
 
+>官方介绍
+
+[开源Word文字替换工具](https://www.itgeeker.net/itgeeker-technical-service/itgeeker_word_str_replacement/)
+
 >软件下载
 
-[下载Office Word文字替换工具](https://www.itgeeker.net/itgeeker-technical-service/itgeeker_word_str_replacement/)
+[下载Office Word文字替换工具](https://gitee.com/itgeeker/itgeeker_word_str_replacement/releases/)
 
 >工具运行主界面
 
@@ -46,6 +51,11 @@
 处理过的文件将被保存到子目录“已替换文件”当中，文件名末尾附上“-replaced”字样以示区别。
 
 #### 更新日志
+
+> 2023-08-22 v1.0.1.0
+ 
+    1. 修复因替换数字引起的not int错误
+    2. 增加替换页眉和页脚的功能
 
 > 2023-06-27 v1.0.0.0
  
